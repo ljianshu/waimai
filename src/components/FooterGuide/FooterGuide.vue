@@ -1,6 +1,6 @@
 <template>
-  <div class="FooterGuide-box">
-    <div class="FooterGuide">
+  <div class="footer_guide">
+    <div class="footer_content">
       <article class="item"
                :class="{on: '/home'===$route.path}"
                @click="goTo('/home')">
@@ -20,8 +20,8 @@
         <span>订单</span>
       </article>
       <article class="item"
-               :class="{on: '/prifile'===$route.path }"
-               @click="goTo('/prifile')">
+               :class="{on: '/profile'===$route.path }"
+               @click="goTo('/profile')">
         <i class="iconfont icon-geren"></i>
         <span>我的</span>
       </article>
@@ -32,7 +32,6 @@
 
 <script>
 export default {
-  name: 'FooterGuide',
   data () {
     return {
 
@@ -47,12 +46,12 @@ export default {
 </script>
 
 <style lang="stylus" rel="stylesheet/stylus" scoped>
-.FooterGuide-box
+.footer_guide
   position fixed
   left 0
   right 0
   bottom 0
-  .FooterGuide::before
+  .footer_content::before
     content ''
     position absolute
     z-index 200
@@ -61,7 +60,7 @@ export default {
     width 100%
     height 1px
     background-color #e4e4e4
-  .FooterGuide
+  .footer_content
     position relative
     background-color #fff
     width 100%
@@ -74,12 +73,12 @@ export default {
       flex-direction column
       align-items center
       margin 0.1rem
-      color #999
+      color #999999
       .iconfont
         font-size 0.44rem
       span
         font-size 0.24rem
         margin 0.08rem 0
     .on
-      color #02a774
+      color #222
 </style>

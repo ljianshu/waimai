@@ -2,24 +2,23 @@
   <section class="profile">
     <header-top title="我的"></header-top>
     <section class="profile-number">
-      <a href="javascript:"
-         class="profile-link">
-        <div class="profile_image">
+      <router-link to='/login' class="profile-link">
+       <div class="profile_image">
           <i class="iconfont icon-person"></i>
         </div>
         <div class="user-info">
           <p class="user-info-top">登录/注册</p>
           <p>
             <span class="user-icon">
-              <i class="iconfont icon-shouji icon-mobile"></i>
+              <i class="iconfont  icon-mobile"></i>
             </span>
             <span class="icon-mobile-number">暂无绑定手机号</span>
           </p>
         </div>
         <span class="arrow">
-          <i class="iconfont icon-jiantou1"></i>
+          <i class="iconfont icon-jiantou"></i>
         </span>
-      </a>
+      </router-link>
     </section>
     <section class="profile_info_data border-1px">
       <ul class="info_data_list">
@@ -45,12 +44,12 @@
       <a href='javascript:'
          class="my_order">
         <span>
-          <i class="iconfont icon-order-s"></i>
+          <i class="iconfont icon-dingdan"></i>
         </span>
         <div class="my_order_div">
           <span>我的订单</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou1"></i>
+            <i class="iconfont icon-jiantou"></i>
           </span>
         </div>
       </a>
@@ -63,7 +62,7 @@
         <div class="my_order_div">
           <span>积分商城</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou1"></i>
+            <i class="iconfont icon-jiantou"></i>
           </span>
         </div>
       </a>
@@ -76,7 +75,7 @@
         <div class="my_order_div">
           <span>硅谷外卖会员卡</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou1"></i>
+            <i class="iconfont icon-jiantou"></i>
           </span>
         </div>
       </a>
@@ -91,7 +90,7 @@
         <div class="my_order_div">
           <span>服务中心</span>
           <span class="my_order_icon">
-            <i class="iconfont icon-jiantou1"></i>
+            <i class="iconfont icon-jiantou"></i>
           </span>
         </div>
       </a>
@@ -102,7 +101,7 @@
 <script>
 import HeaderTop from '@/components/HeaderTop/HeaderTop'
 export default {
-  name: 'prifile',
+  name: 'profile',
   components: {
     HeaderTop
   },
@@ -118,6 +117,7 @@ export default {
 @import '../../common/stylus/mixins.styl'
 .profile // 我的
   width 100%
+  overflow hidden
   .profile-number
     margin-top 45.5px
     .profile-link
@@ -148,25 +148,25 @@ export default {
             padding-bottom 8px
           .user-icon
             display inline-block
-            margin-left -15px
-            margin-right 5px
+            margin-left -8px
+            margin-right -3px
             width 20px
             height 20px
             .icon-mobile
-              font-size 30px
+              font-size 20px
               vertical-align text-top
           .icon-mobile-number
-            font-size 14px
+            font-size 16px
             color #fff
       .arrow
         width 12px
         height 12px
         position absolute
-        right 15px
+        right 20px
         top 40%
-        .icon-jiantou1
+        .icon-jiantou
           color #fff
-          font-size 5px
+          font-size 30px
   .profile_info_data
     bottom-border-1px(#e4e4e4)
     width 100%
@@ -222,8 +222,9 @@ export default {
         >.iconfont
           margin-left -10px
           font-size 30px
-        .icon-order-s
+        .icon-dingdan
           color #02a774
+          font-size 26px
         .icon-jifen
           color #ff5f3e
         .icon-vip
@@ -243,7 +244,7 @@ export default {
         .my_order_icon
           width 10px
           height 10px
-          .icon-jiantou1
+          .icon-jiantou
             color #bbb
             font-size 10px
 </style>
