@@ -11,12 +11,13 @@ import { mapActions } from 'vuex'
 export default {
   mounted () {
     this.getAddress()
+    this.getUserInfoAsync()
   },
   components: {
     FooterGuide
   },
   methods: {
-    ...mapActions(['getAddress'])
+    ...mapActions(['getAddress', 'getUserInfoAsync'])
   }
 
 }

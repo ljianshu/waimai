@@ -2,14 +2,21 @@
   <section class="msite">
     <!--首页头部-->
     <HeaderTop :title="address.name">
-      <span class="header_search"
-            slot="left">
-        <i class="iconfont icon-sousuo"></i>
-      </span>
-      <span class="header_login"
-            slot="right">
-        <span class="header_login_text">登录|注册</span>
-      </span>
+      <router-link class="header_search"
+                   to='/search'
+                   slot="left">
+        <i class="iconfont icon-sousuo"
+           style="color:#333;font-size:28px;"></i>
+      </router-link>
+      <router-link class="header_login"
+                   slot="right"
+                   :to="userInfo._id?'/userinfo':'/login'">
+        <span class="header_login_text"
+              v-if="!userInfo._id">登录|注册</span>
+        <span class="header_login_text"
+              v-else><i class="iconfont icon-person2"
+             style="font-size:20px;"></i></span>
+      </router-link>
     </HeaderTop>
     <!--首页导航-->
     <nav class="msite_nav">
@@ -68,7 +75,7 @@ export default {
     }
   },
   computed: {
-    ...mapState(['address', 'categorys']),
+    ...mapState(['address', 'categorys', 'userInfo']),
     categorysArr () {
       const categorys = this.categorys
       const arr = []
