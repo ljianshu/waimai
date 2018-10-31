@@ -22,7 +22,7 @@ import shopInfo from './shopInfo/shopInfo'
 import shopRatings from './shopRatings/shopRatings'
 export default {
   mounted () {
-    this.$store.dispatch('reqShopInfo')
+    this.$store.dispatch('getShopInfo')
   },
   components: {
     shopGoods,

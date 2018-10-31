@@ -15,6 +15,7 @@
   },
   "dependencies": {
     "axios": "^0.18.0",
+    "better-scroll": "^1.13.2",
     "mint-ui": "^2.2.13",
     "mock.js": "^0.2.0",
     "mockjs": "^1.0.1-beta3",

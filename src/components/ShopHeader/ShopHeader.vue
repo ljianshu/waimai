@@ -88,7 +88,7 @@
           </div>
           <div class="mask-footer"
                @click="toggleShopShow">
-            <span class="iconfont icon-close"></span>
+            <span class="iconfont icon-close2"></span>
           </div>
         </div>
         <div class="brief-modal-cover"></div>

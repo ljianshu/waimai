@@ -90,7 +90,7 @@ export default {
       commit(RESET_USER_INFO)
     }
   },
-  async reqShopGoods ({
+  async getShopGoods ({
     commit
   }) {
     const result = await reqShopGoods()
@@ -101,7 +101,7 @@ export default {
       })
     }
   },
-  async reqShopInfo ({
+  async getShopInfo ({
     commit
   }) {
     const result = await reqShopInfo()
@@ -112,7 +112,7 @@ export default {
       })
     }
   },
-  async reqShopRatings ({
+  async getShopRatings ({
     commit
   }) {
     const result = await reqShopRatings()
