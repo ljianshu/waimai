@@ -7,7 +7,7 @@
           <li class="menu-item"
               v-for="(good, index) in goods"
               :key="index"
-              :class="{current: index===currentIndex}"
+              :class="{current: index ===currentIndex}"
               @click="clickMenuItem(index)">
             <span class="text bottom-border-1px">
               <img class="icon"
@@ -60,21 +60,72 @@
 </template>
 <script>
 import BScroll from 'better-scroll'
+import CartControl from '../../../components/CartControl/CartControl.vue'
 import { mapState } from 'vuex'
 export default {
+  data () {
+    return {
+      scrollY: 0, // 右侧滑动的Y轴坐标
+      tops: [] // 所有右侧分类li的top组成的数组
+    }
+  },
   mounted () {
-    this.$store.dispatch('getShopGoods')
+    this.$store.dispatch('getShopGoods', () => {
+      this.$nextTick(() => {
+        this._initScroll()
+        this._initTops()
+      })
+    })
   },
   methods: {
     clickMenuItem (index) {
-      console.log(111)
+      // 使用右侧列表滑动到相应的位置
+      const scrollY = this.tops[index]
+      this.scrollY = scrollY
+      this.foodsScroll.scrollTo(0, -scrollY, 300)
     },
     showFood (food) {
       console.log(111)
+    },
+    // 初始化滚动
+    _initScroll () {
+      /* eslint-disable no-new */
+      new BScroll('.menu-wrapper', {
+        click: true
+      })
+      this.foodsScroll = new BScroll('.foods-wrapper', {
+        probeType: 3,
+        click: true
+      })
+      this.foodsScroll.on('scroll', ({ x, y }) => {
+        this.scrollY = Math.abs(y)
+      })
+    },
+    _initTops () {
+      const tops = []
+      let top = 0
+      tops.push(top)
+      const lis = this.$refs.foodsUl.getElementsByClassName('food-list-hook')
+      Array.from(lis).forEach((ele) => {
+        top += ele.clientHeight
+        tops.push(top)
+      })
+      this.tops = tops
     }
   },
   computed: {
-    ...mapState(['goods'])
+    ...mapState(['goods']),
+    // 计算得到当前分类的下标
+    currentIndex () {
+      const { scrollY, tops } = this
+      const index = tops.findIndex((top, index) => {
+        return scrollY >= top && scrollY < tops[index + 1]
+      })
+      return index
+    }
+  },
+  components: {
+    CartControl
   }
 }
 </script>

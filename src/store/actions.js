@@ -92,13 +92,14 @@ export default {
   },
   async getShopGoods ({
     commit
-  }) {
+  }, callback) {
     const result = await reqShopGoods()
     if (result.code === 0) {
       const goods = result.data
       commit(RECEIVE_GOODS, {
         goods
       })
+      callback && callback()
     }
   },
   async getShopInfo ({
