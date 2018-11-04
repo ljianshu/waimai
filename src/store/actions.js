@@ -6,7 +6,9 @@ import {
   RESET_USER_INFO,
   RECEIVE_GOODS,
   RECEIVE_INFO,
-  RECEIVE_RATINGS
+  RECEIVE_RATINGS,
+  INCREMENT_FOOD_COUNT,
+  DECREMENT_FOOD_COUNT
 } from './mutation-types'
 import {
   reqAddress,
@@ -19,10 +21,7 @@ import {
   reqShopInfo
 } from '../api'
 export default {
-  async getAddress ({
-    commit,
-    state
-  }) {
+  async getAddress ({ commit, state }) {
     const geohash = state.latitude + ',' + state.longitude
     const result = await reqAddress(geohash)
     if (result.code === 0) {
@@ -34,9 +33,7 @@ export default {
       console.log('reqAddress')
     }
   },
-  async getCategory ({
-    commit
-  }) {
+  async getCategory ({ commit }) {
     const result = await reqFoodCategorys()
     if (result.code === 0) {
       const categorys = result.data
@@ -45,14 +42,8 @@ export default {
       })
     }
   },
-  async getShops ({
-    commit,
-    state
-  }) {
-    const {
-      longitude,
-      latitude
-    } = state
+  async getShops ({ commit, state }) {
+    const { longitude, latitude } = state
     const result = await reqShops(longitude, latitude)
     if (result.code === 0) {
       const shops = result.data
@@ -62,17 +53,13 @@ export default {
     }
   },
   // 同步记录用户信息
-  getUserInfo ({
-    commit
-  }, userInfo) {
+  getUserInfo ({ commit }, userInfo) {
     commit(RECEIVE_USER_INFO, {
       userInfo
     })
   },
   // 异步获取用户信息
-  async getUserInfoAsync ({
-    commit
-  }) {
+  async getUserInfoAsync ({ commit }) {
     const result = await reqUserInfo()
     if (result.code === 0) {
       const userInfo = result.data
@@ -82,17 +69,13 @@ export default {
     }
   },
   // 请求退出
-  async logout ({
-    commit
-  }) {
+  async logout ({ commit }) {
     const result = await reqLogout()
     if (result.code === 0) {
       commit(RESET_USER_INFO)
     }
   },
-  async getShopGoods ({
-    commit
-  }, callback) {
+  async getShopGoods ({ commit }, callback) {
     const result = await reqShopGoods()
     if (result.code === 0) {
       const goods = result.data
@@ -102,9 +85,7 @@ export default {
       callback && callback()
     }
   },
-  async getShopInfo ({
-    commit
-  }) {
+  async getShopInfo ({ commit }) {
     const result = await reqShopInfo()
     if (result.code === 0) {
       const info = result.data
@@ -113,15 +94,20 @@ export default {
       })
     }
   },
-  async getShopRatings ({
-    commit
-  }) {
+  async getShopRatings ({ commit }) {
     const result = await reqShopRatings()
     if (result.code === 0) {
       const ratings = result.data
       commit(RECEIVE_RATINGS, {
         ratings
       })
+    }
+  },
+  updateFoodCount ({ commit }, { isAdd, food }) {
+    if (isAdd) {
+      commit(INCREMENT_FOOD_COUNT, { food })
+    } else {
+      commit(DECREMENT_FOOD_COUNT, { food })
     }
   }
 }
