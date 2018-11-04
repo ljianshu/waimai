@@ -27,7 +27,8 @@
       </div>
     </div>
     <div class="food-cover"
-         @click="toggleShow"></div>
+         @click="toggleShow"> </div>
+
   </div>
 </template>
 <script>
