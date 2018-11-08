@@ -7,7 +7,7 @@
         <p class="foodpanel-desc">{{food.info}}</p>
         <div class="back"
              @click="toggleShow">
-          <i class="iconfont icon-arrow_left"></i>
+          <i class="iconfont icon-jiantou2"></i>
         </div>
       </div>
       <div class="content">

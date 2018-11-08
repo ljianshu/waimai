@@ -56,17 +56,21 @@
         </ul>
       </div>
     </div>
+    <Food :food="food"
+          ref='foodDetail' />
   </div>
 </template>
 <script>
 import BScroll from 'better-scroll'
 import CartControl from '../../../components/CartControl/CartControl.vue'
+import Food from '../../../components/Food/Food.vue'
 import { mapState } from 'vuex'
 export default {
   data () {
     return {
       scrollY: 0, // 右侧滑动的Y轴坐标
-      tops: [] // 所有右侧分类li的top组成的数组
+      tops: [], // 所有右侧分类li的top组成的数组
+      food: {} // 需要显示的food
     }
   },
   mounted () {
@@ -85,7 +89,8 @@ export default {
       this.foodsScroll.scrollTo(0, -scrollY, 300)
     },
     showFood (food) {
-      console.log(111)
+      this.food = food
+      this.$refs.foodDetail.toggleShow()
     },
     // 初始化滚动
     _initScroll () {
@@ -125,7 +130,8 @@ export default {
     }
   },
   components: {
-    CartControl
+    CartControl,
+    Food
   }
 }
 </script>
